@@ -25,7 +25,7 @@
         <span>Income Statement</span>
       </a>
       <a href="#" class="nav-item" data-page="balance">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4 10h4v10H4zm6-4h4v14h-4zm6 8h4v6h-4z"/></svg>
         <span>Balance Sheet</span>
       </a>
       <a href="#" class="nav-item" data-page="cashflow">
@@ -33,6 +33,12 @@
         <span>Cash Flow</span>
       </a>
     </nav>
+    <div class="sidebar-footer">
+      <div class="last-updated">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+        <span>Updated: May 2025</span>
+      </div>
+    </div>
   </aside>
 
   <!-- Main Content -->
@@ -63,7 +69,10 @@
           <label for="date-end">To</label>
           <input type="month" id="date-end" value="2025-12" />
         </div>
-        <button class="btn-apply" id="btn-apply">Apply</button>
+        <button class="btn-apply" id="btn-apply">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
+          Apply
+        </button>
       </div>
     </header>
 
@@ -71,45 +80,103 @@
     <section id="page-overview" class="page active">
       <!-- KPI Cards -->
       <div class="kpi-row">
-        <div class="kpi-card">
-          <div class="kpi-icon revenue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        <div class="kpi-card" data-kpi="revenue">
+          <div class="kpi-top">
+            <div class="kpi-icon revenue">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+            </div>
+            <span class="kpi-change positive" id="kpi-revenue-change">▲ 12.4%</span>
           </div>
           <div class="kpi-info">
             <span class="kpi-label">Total Revenue</span>
-            <span class="kpi-value" id="kpi-revenue">$2,450,000</span>
-            <span class="kpi-change positive" id="kpi-revenue-change">▲ 12.4% vs LY</span>
+            <span class="kpi-value" id="kpi-revenue">$0</span>
+          </div>
+          <div class="kpi-sparkline"><canvas id="spark-revenue" height="32"></canvas></div>
+          <div class="kpi-target">
+            <div class="target-bar"><div class="target-fill revenue-fill" id="target-revenue"></div></div>
+            <span class="target-label" id="target-revenue-label">0% of target</span>
           </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-icon expenses">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 18l2.29-2.29-4.88-4.88-4 4L2 7.41 3.41 6l6 6 4-4 6.3 6.29L22 12v6z"/></svg>
+
+        <div class="kpi-card" data-kpi="expenses">
+          <div class="kpi-top">
+            <div class="kpi-icon expenses">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 18l2.29-2.29-4.88-4.88-4 4L2 7.41 3.41 6l6 6 4-4 6.3 6.29L22 12v6z"/></svg>
+            </div>
+            <span class="kpi-change negative" id="kpi-expenses-change">▲ 8.1%</span>
           </div>
           <div class="kpi-info">
             <span class="kpi-label">Total Expenses</span>
-            <span class="kpi-value" id="kpi-expenses">$1,820,000</span>
-            <span class="kpi-change negative" id="kpi-expenses-change">▲ 8.1% vs LY</span>
+            <span class="kpi-value" id="kpi-expenses">$0</span>
+          </div>
+          <div class="kpi-sparkline"><canvas id="spark-expenses" height="32"></canvas></div>
+          <div class="kpi-target">
+            <div class="target-bar"><div class="target-fill expenses-fill" id="target-expenses"></div></div>
+            <span class="target-label" id="target-expenses-label">0% of budget</span>
           </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-icon profit">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+
+        <div class="kpi-card" data-kpi="profit">
+          <div class="kpi-top">
+            <div class="kpi-icon profit">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            </div>
+            <span class="kpi-change positive" id="kpi-profit-change">▲ 24.7%</span>
           </div>
           <div class="kpi-info">
             <span class="kpi-label">Net Profit</span>
-            <span class="kpi-value" id="kpi-profit">$630,000</span>
-            <span class="kpi-change positive" id="kpi-profit-change">▲ 24.7% vs LY</span>
+            <span class="kpi-value" id="kpi-profit">$0</span>
+          </div>
+          <div class="kpi-sparkline"><canvas id="spark-profit" height="32"></canvas></div>
+          <div class="kpi-target">
+            <div class="target-bar"><div class="target-fill profit-fill" id="target-profit"></div></div>
+            <span class="target-label" id="target-profit-label">0% of target</span>
           </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-icon cashflow">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+
+        <div class="kpi-card" data-kpi="cashflow">
+          <div class="kpi-top">
+            <div class="kpi-icon cashflow">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+            </div>
+            <span class="kpi-change positive" id="kpi-cashflow-change">▲ 18.3%</span>
           </div>
           <div class="kpi-info">
             <span class="kpi-label">Net Cash Flow</span>
-            <span class="kpi-value" id="kpi-cashflow">$485,000</span>
-            <span class="kpi-change positive" id="kpi-cashflow-change">▲ 18.3% vs LY</span>
+            <span class="kpi-value" id="kpi-cashflow">$0</span>
           </div>
+          <div class="kpi-sparkline"><canvas id="spark-cashflow" height="32"></canvas></div>
+          <div class="kpi-target">
+            <div class="target-bar"><div class="target-fill cashflow-fill" id="target-cashflow"></div></div>
+            <span class="target-label" id="target-cashflow-label">0% of target</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Financial Health Score -->
+      <div class="health-score-row">
+        <div class="chart-card health-card">
+          <h3>Financial Health Score</h3>
+          <div class="health-grid">
+            <div class="health-gauge">
+              <canvas id="chart-health-gauge" width="200" height="200"></canvas>
+              <div class="gauge-center">
+                <span class="gauge-value" id="health-score-value">0</span>
+                <span class="gauge-label">/ 100</span>
+              </div>
+            </div>
+            <div class="health-breakdown">
+              <div class="health-item"><span class="health-dot" style="background:#27ae60"></span><span>Liquidity</span><div class="health-bar"><div class="health-fill" id="health-liquidity" style="width:0%"></div></div><span class="health-val" id="health-liq-val">0</span></div>
+              <div class="health-item"><span class="health-dot" style="background:#2d9cdb"></span><span>Solvency</span><div class="health-bar"><div class="health-fill" id="health-solvency" style="width:0%"></div></div><span class="health-val" id="health-sol-val">0</span></div>
+              <div class="health-item"><span class="health-dot" style="background:#f2c94c"></span><span>Profitability</span><div class="health-bar"><div class="health-fill" id="health-profitability" style="width:0%"></div></div><span class="health-val" id="health-prof-val">0</span></div>
+              <div class="health-item"><span class="health-dot" style="background:#f2994a"></span><span>Efficiency</span><div class="health-bar"><div class="health-fill" id="health-efficiency" style="width:0%"></div></div><span class="health-val" id="health-eff-val">0</span></div>
+              <div class="health-item"><span class="health-dot" style="background:#9b51e0"></span><span>Growth</span><div class="health-bar"><div class="health-fill" id="health-growth" style="width:0%"></div></div><span class="health-val" id="health-grw-val">0</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>Expense Breakdown by Department</h3>
+          <canvas id="chart-expense-breakdown"></canvas>
         </div>
       </div>
 
@@ -120,33 +187,40 @@
           <canvas id="chart-profitability"></canvas>
         </div>
         <div class="chart-card">
-          <h3>Expense Breakdown</h3>
-          <canvas id="chart-expense-breakdown"></canvas>
-        </div>
-      </div>
-
-      <!-- Charts Row 2 -->
-      <div class="charts-row">
-        <div class="chart-card">
           <h3>Revenue vs Expenses</h3>
           <canvas id="chart-rev-vs-exp"></canvas>
         </div>
-        <div class="chart-card">
-          <h3>Revenue Forecast (6-Month)</h3>
+      </div>
+
+      <!-- Charts Row 2 — Forecasting -->
+      <div class="charts-row">
+        <div class="chart-card wide">
+          <h3>Revenue Forecast (6-Month) with Confidence Interval</h3>
           <canvas id="chart-forecast"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>YoY Revenue Comparison</h3>
+          <canvas id="chart-yoy"></canvas>
         </div>
       </div>
     </section>
 
     <!-- ===== INCOME STATEMENT PAGE ===== -->
     <section id="page-income" class="page">
+      <!-- Income KPI Summary -->
+      <div class="mini-kpi-row">
+        <div class="mini-kpi"><span class="mini-kpi-label">Gross Margin</span><span class="mini-kpi-value" id="income-gross-margin">0%</span></div>
+        <div class="mini-kpi"><span class="mini-kpi-label">Operating Margin</span><span class="mini-kpi-value" id="income-op-margin">0%</span></div>
+        <div class="mini-kpi"><span class="mini-kpi-label">Net Margin</span><span class="mini-kpi-value" id="income-net-margin">0%</span></div>
+        <div class="mini-kpi"><span class="mini-kpi-label">EBITDA</span><span class="mini-kpi-value" id="income-ebitda">$0</span></div>
+      </div>
       <div class="charts-row">
         <div class="chart-card wide">
           <h3>Income Statement — Monthly Breakdown</h3>
           <canvas id="chart-income-waterfall"></canvas>
         </div>
         <div class="chart-card">
-          <h3>Gross vs Operating vs Net Margin</h3>
+          <h3>Gross / Operating / Net Margin Trends</h3>
           <canvas id="chart-margins"></canvas>
         </div>
       </div>
@@ -163,19 +237,26 @@
 
     <!-- ===== BALANCE SHEET PAGE ===== -->
     <section id="page-balance" class="page">
+      <!-- Balance Sheet KPI Summary -->
+      <div class="mini-kpi-row">
+        <div class="mini-kpi"><span class="mini-kpi-label">Current Ratio</span><span class="mini-kpi-value" id="bs-current-ratio">0</span></div>
+        <div class="mini-kpi"><span class="mini-kpi-label">Quick Ratio</span><span class="mini-kpi-value" id="bs-quick-ratio">0</span></div>
+        <div class="mini-kpi"><span class="mini-kpi-label">D/E Ratio</span><span class="mini-kpi-value" id="bs-de-ratio">0</span></div>
+        <div class="mini-kpi"><span class="mini-kpi-label">Total Assets</span><span class="mini-kpi-value" id="bs-total-assets">$0</span></div>
+      </div>
       <div class="charts-row">
         <div class="chart-card">
-          <h3>Assets vs Liabilities</h3>
+          <h3>Assets vs Liabilities vs Equity</h3>
           <canvas id="chart-assets-liab"></canvas>
         </div>
         <div class="chart-card">
-          <h3>Asset Composition</h3>
+          <h3>Asset Composition (Q4)</h3>
           <canvas id="chart-asset-comp"></canvas>
         </div>
       </div>
       <div class="charts-row">
         <div class="chart-card">
-          <h3>Debt-to-Equity Ratio</h3>
+          <h3>Debt-to-Equity Ratio Trend</h3>
           <canvas id="chart-dte"></canvas>
         </div>
         <div class="chart-card">
@@ -196,9 +277,16 @@
 
     <!-- ===== CASH FLOW PAGE ===== -->
     <section id="page-cashflow" class="page">
+      <!-- Cash Flow KPI Summary -->
+      <div class="mini-kpi-row">
+        <div class="mini-kpi"><span class="mini-kpi-label">Operating CF</span><span class="mini-kpi-value" id="cf-operating">$0</span></div>
+        <div class="mini-kpi"><span class="mini-kpi-label">Investing CF</span><span class="mini-kpi-value" id="cf-investing">$0</span></div>
+        <div class="mini-kpi"><span class="mini-kpi-label">Financing CF</span><span class="mini-kpi-value" id="cf-financing">$0</span></div>
+        <div class="mini-kpi"><span class="mini-kpi-label">Free Cash Flow</span><span class="mini-kpi-value" id="cf-fcf">$0</span></div>
+      </div>
       <div class="charts-row">
         <div class="chart-card wide">
-          <h3>Cash Flow Breakdown</h3>
+          <h3>Cash Flow Breakdown (Stacked)</h3>
           <canvas id="chart-cf-breakdown"></canvas>
         </div>
         <div class="chart-card">
@@ -215,6 +303,15 @@
           <h3>Cash Conversion Cycle</h3>
           <canvas id="chart-ccc"></canvas>
         </div>
+      </div>
+      <div class="table-card">
+        <h3>Cash Flow Statement</h3>
+        <table id="table-cashflow">
+          <thead>
+            <tr><th>Category</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th><th>Total</th></tr>
+          </thead>
+          <tbody id="cashflow-tbody"></tbody>
+        </table>
       </div>
     </section>
   </main>

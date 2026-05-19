@@ -1,6 +1,7 @@
 // ===== Financial Data for SME Corp FY 2025 =====
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const QUARTERS = ['Q1','Q2','Q3','Q4'];
 
 // Department-level monthly revenue
 const DEPT_REVENUE = {
@@ -18,6 +19,22 @@ const DEPT_EXPENSES = {
   operations: [ 40000, 41000, 42000, 43000, 42500, 44000, 44500, 44000, 45000, 46000, 47000, 48000],
   hr:         [ 18000, 18500, 19000, 19500, 19000, 20000, 20500, 20000, 21000, 21500, 22000, 22500],
   it:         [ 15000, 15500, 16000, 16500, 16000, 17000, 17500, 17000, 18000, 18500, 19000, 19500],
+};
+
+// Prior year data for YoY comparison
+const PRIOR_YEAR = {
+  revenue:  [200000,215000,232000,248000,238000,265000,275000,268000,286000,296000,308000,320000],
+  expenses: [125000,128000,132000,135000,133000,140000,143000,141000,146000,149000,152000,156000],
+  netIncome:[ 8500, 13200, 17800, 22100, 19000, 25200, 28000, 26500, 30300, 32500, 35100, 37500],
+  cashFlow: [20000, 28000, 32000, 38000, 33000, 42000, 44000, 42000, 46000, 49000, 52000, 55000],
+};
+
+// Targets / Budgets
+const TARGETS = {
+  revenue:  3800000,
+  expenses: 2200000,
+  netProfit: 500000,
+  cashFlow:  550000,
 };
 
 // Income Statement line items (company-wide)
@@ -58,7 +75,16 @@ const CASH_FLOW = {
   financing: [-8000, -8000,-10000,-10000,-8000,-12000,-10000,-8000,-10000,-12000,-10000,-8000],
 };
 
-// Forecasting — simple linear extrapolation for next 6 months
+// Financial Health Score components (0-100)
+const HEALTH_SCORES = {
+  liquidity:    82,
+  solvency:     76,
+  profitability:88,
+  efficiency:   71,
+  growth:       85,
+};
+
+// Forecasting — linear regression with confidence bands
 function generateForecast(data, months) {
   const n = data.length;
   const xMean = (n - 1) / 2;
@@ -70,11 +96,25 @@ function generateForecast(data, months) {
   }
   const slope = num / den;
   const intercept = yMean - slope * xMean;
-  const forecast = [];
-  for (let i = 0; i < months; i++) {
-    forecast.push(Math.round(intercept + slope * (n + i)));
+
+  let sse = 0;
+  for (let i = 0; i < n; i++) {
+    sse += (data[i] - (intercept + slope * i)) ** 2;
   }
-  return forecast;
+  const se = Math.sqrt(sse / (n - 2));
+
+  const forecast = [];
+  const upper = [];
+  const lower = [];
+  for (let i = 0; i < months; i++) {
+    const x = n + i;
+    const predicted = Math.round(intercept + slope * x);
+    const margin = Math.round(1.96 * se * Math.sqrt(1 + 1/n + ((x - xMean) ** 2) / den));
+    forecast.push(predicted);
+    upper.push(predicted + margin);
+    lower.push(predicted - margin);
+  }
+  return { forecast, upper, lower, slope, intercept };
 }
 
 const FORECAST_MONTHS = ['Jan 26','Feb 26','Mar 26','Apr 26','May 26','Jun 26'];
