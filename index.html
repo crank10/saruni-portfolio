@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financial Health Dashboard — SME Corp</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="12" width="4" height="9" rx="1" fill="#F2C94C"/><rect x="10" y="7" width="4" height="14" rx="1" fill="#F2C94C"/><rect x="17" y="3" width="4" height="18" rx="1" fill="#F2C94C"/></svg>
+      <span>FinDash</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-page="overview">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+        <span>Overview</span>
+      </a>
+      <a href="#" class="nav-item" data-page="income">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"/></svg>
+        <span>Income Statement</span>
+      </a>
+      <a href="#" class="nav-item" data-page="balance">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z"/></svg>
+        <span>Balance Sheet</span>
+      </a>
+      <a href="#" class="nav-item" data-page="cashflow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+        <span>Cash Flow</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <h1 id="page-title">Financial Health Dashboard</h1>
+        <span class="subtitle">SME Corp — FY 2025</span>
+      </div>
+      <div class="header-right">
+        <div class="filter-group">
+          <label for="dept-filter">Department</label>
+          <select id="dept-filter">
+            <option value="all">All Departments</option>
+            <option value="sales">Sales</option>
+            <option value="marketing">Marketing</option>
+            <option value="operations">Operations</option>
+            <option value="hr">Human Resources</option>
+            <option value="it">IT &amp; Technology</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="date-start">From</label>
+          <input type="month" id="date-start" value="2025-01" />
+        </div>
+        <div class="filter-group">
+          <label for="date-end">To</label>
+          <input type="month" id="date-end" value="2025-12" />
+        </div>
+        <button class="btn-apply" id="btn-apply">Apply</button>
+      </div>
+    </header>
+
+    <!-- ===== OVERVIEW PAGE ===== -->
+    <section id="page-overview" class="page active">
+      <!-- KPI Cards -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-icon revenue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+          </div>
+          <div class="kpi-info">
+            <span class="kpi-label">Total Revenue</span>
+            <span class="kpi-value" id="kpi-revenue">$2,450,000</span>
+            <span class="kpi-change positive" id="kpi-revenue-change">▲ 12.4% vs LY</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon expenses">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 18l2.29-2.29-4.88-4.88-4 4L2 7.41 3.41 6l6 6 4-4 6.3 6.29L22 12v6z"/></svg>
+          </div>
+          <div class="kpi-info">
+            <span class="kpi-label">Total Expenses</span>
+            <span class="kpi-value" id="kpi-expenses">$1,820,000</span>
+            <span class="kpi-change negative" id="kpi-expenses-change">▲ 8.1% vs LY</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon profit">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          </div>
+          <div class="kpi-info">
+            <span class="kpi-label">Net Profit</span>
+            <span class="kpi-value" id="kpi-profit">$630,000</span>
+            <span class="kpi-change positive" id="kpi-profit-change">▲ 24.7% vs LY</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon cashflow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+          </div>
+          <div class="kpi-info">
+            <span class="kpi-label">Net Cash Flow</span>
+            <span class="kpi-value" id="kpi-cashflow">$485,000</span>
+            <span class="kpi-change positive" id="kpi-cashflow-change">▲ 18.3% vs LY</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Row 1 -->
+      <div class="charts-row">
+        <div class="chart-card wide">
+          <h3>Monthly Profitability Trend</h3>
+          <canvas id="chart-profitability"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Expense Breakdown</h3>
+          <canvas id="chart-expense-breakdown"></canvas>
+        </div>
+      </div>
+
+      <!-- Charts Row 2 -->
+      <div class="charts-row">
+        <div class="chart-card">
+          <h3>Revenue vs Expenses</h3>
+          <canvas id="chart-rev-vs-exp"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Revenue Forecast (6-Month)</h3>
+          <canvas id="chart-forecast"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INCOME STATEMENT PAGE ===== -->
+    <section id="page-income" class="page">
+      <div class="charts-row">
+        <div class="chart-card wide">
+          <h3>Income Statement — Monthly Breakdown</h3>
+          <canvas id="chart-income-waterfall"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Gross vs Operating vs Net Margin</h3>
+          <canvas id="chart-margins"></canvas>
+        </div>
+      </div>
+      <div class="table-card">
+        <h3>Income Statement Detail</h3>
+        <table id="table-income">
+          <thead>
+            <tr><th>Line Item</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th><th>Total</th></tr>
+          </thead>
+          <tbody id="income-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== BALANCE SHEET PAGE ===== -->
+    <section id="page-balance" class="page">
+      <div class="charts-row">
+        <div class="chart-card">
+          <h3>Assets vs Liabilities</h3>
+          <canvas id="chart-assets-liab"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Asset Composition</h3>
+          <canvas id="chart-asset-comp"></canvas>
+        </div>
+      </div>
+      <div class="charts-row">
+        <div class="chart-card">
+          <h3>Debt-to-Equity Ratio</h3>
+          <canvas id="chart-dte"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Working Capital Trend</h3>
+          <canvas id="chart-working-cap"></canvas>
+        </div>
+      </div>
+      <div class="table-card">
+        <h3>Balance Sheet Summary</h3>
+        <table id="table-balance">
+          <thead>
+            <tr><th>Category</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+          </thead>
+          <tbody id="balance-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== CASH FLOW PAGE ===== -->
+    <section id="page-cashflow" class="page">
+      <div class="charts-row">
+        <div class="chart-card wide">
+          <h3>Cash Flow Breakdown</h3>
+          <canvas id="chart-cf-breakdown"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Cash Flow Components</h3>
+          <canvas id="chart-cf-components"></canvas>
+        </div>
+      </div>
+      <div class="charts-row">
+        <div class="chart-card">
+          <h3>Free Cash Flow Trend</h3>
+          <canvas id="chart-fcf"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Cash Conversion Cycle</h3>
+          <canvas id="chart-ccc"></canvas>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
