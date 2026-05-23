@@ -114,6 +114,10 @@ body{
 .kpi-icon.expenses{background:rgba(235,87,87,.15);color:var(--red)}
 .kpi-icon.profit{background:rgba(45,156,219,.15);color:var(--blue)}
 .kpi-icon.cashflow{background:rgba(155,81,224,.15);color:var(--purple)}
+.kpi-icon.hr-headcount{background:rgba(45,156,219,.15);color:var(--blue)}
+.kpi-icon.hr-turnover{background:rgba(39,174,96,.15);color:var(--green)}
+.kpi-icon.hr-satisfaction{background:rgba(242,201,76,.15);color:var(--accent)}
+.kpi-icon.hr-openpos{background:rgba(242,153,74,.15);color:var(--orange)}
 .kpi-info{display:flex;flex-direction:column;gap:2px}
 .kpi-label{font-size:.78rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.4px}
 .kpi-value{font-size:1.5rem;font-weight:700}
