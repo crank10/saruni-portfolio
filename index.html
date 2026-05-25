@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Financial Health Dashboard — SME Corp</title>
+  <title>HR Analytics Dashboard — SME Corp</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
@@ -12,25 +12,29 @@
   <!-- Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-logo">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="12" width="4" height="9" rx="1" fill="#F2C94C"/><rect x="10" y="7" width="4" height="14" rx="1" fill="#F2C94C"/><rect x="17" y="3" width="4" height="18" rx="1" fill="#F2C94C"/></svg>
-      <span>FinDash</span>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="currentColor"/></svg>
+      <span>HR Dash</span>
     </div>
     <nav class="sidebar-nav">
       <a href="#" class="nav-item active" data-page="overview">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
         <span>Overview</span>
       </a>
-      <a href="#" class="nav-item" data-page="income">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"/></svg>
-        <span>Income Statement</span>
+      <a href="#" class="nav-item" data-page="recruitment">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        <span>Recruitment</span>
       </a>
-      <a href="#" class="nav-item" data-page="balance">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z"/></svg>
-        <span>Balance Sheet</span>
+      <a href="#" class="nav-item" data-page="workforce">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        <span>Workforce</span>
       </a>
-      <a href="#" class="nav-item" data-page="cashflow">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
-        <span>Cash Flow</span>
+      <a href="#" class="nav-item" data-page="performance">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+        <span>Performance</span>
+      </a>
+      <a href="#" class="nav-item" data-page="predictive">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        <span>Predictive</span>
       </a>
     </nav>
   </aside>
@@ -40,7 +44,7 @@
     <!-- Header -->
     <header class="header">
       <div class="header-left">
-        <h1 id="page-title">Financial Health Dashboard</h1>
+        <h1 id="page-title">HR Analytics Dashboard</h1>
         <span class="subtitle">SME Corp — FY 2025</span>
       </div>
       <div class="header-right">
@@ -72,148 +76,205 @@
       <!-- KPI Cards -->
       <div class="kpi-row">
         <div class="kpi-card">
-          <div class="kpi-icon revenue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+          <div class="kpi-icon headcount">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
           </div>
           <div class="kpi-info">
-            <span class="kpi-label">Total Revenue</span>
-            <span class="kpi-value" id="kpi-revenue">$2,450,000</span>
-            <span class="kpi-change positive" id="kpi-revenue-change">▲ 12.4% vs LY</span>
+            <span class="kpi-label">Total Headcount</span>
+            <span class="kpi-value" id="kpi-headcount">167</span>
+            <span class="kpi-change positive" id="kpi-headcount-change">▲ 25.4% vs LY</span>
           </div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-icon expenses">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 18l2.29-2.29-4.88-4.88-4 4L2 7.41 3.41 6l6 6 4-4 6.3 6.29L22 12v6z"/></svg>
+          <div class="kpi-icon turnover">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
           </div>
           <div class="kpi-info">
-            <span class="kpi-label">Total Expenses</span>
-            <span class="kpi-value" id="kpi-expenses">$1,820,000</span>
-            <span class="kpi-change negative" id="kpi-expenses-change">▲ 8.1% vs LY</span>
+            <span class="kpi-label">Turnover Rate</span>
+            <span class="kpi-value" id="kpi-turnover">2.9%</span>
+            <span class="kpi-change positive" id="kpi-turnover-change">▼ 1.2% vs LY</span>
           </div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-icon profit">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          <div class="kpi-icon satisfaction">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
           </div>
           <div class="kpi-info">
-            <span class="kpi-label">Net Profit</span>
-            <span class="kpi-value" id="kpi-profit">$630,000</span>
-            <span class="kpi-change positive" id="kpi-profit-change">▲ 24.7% vs LY</span>
+            <span class="kpi-label">Avg Satisfaction</span>
+            <span class="kpi-value" id="kpi-satisfaction">4.2</span>
+            <span class="kpi-change positive" id="kpi-satisfaction-change">▲ 0.3% vs LY</span>
           </div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-icon cashflow">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+          <div class="kpi-icon openpos">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
           </div>
           <div class="kpi-info">
-            <span class="kpi-label">Net Cash Flow</span>
-            <span class="kpi-value" id="kpi-cashflow">$485,000</span>
-            <span class="kpi-change positive" id="kpi-cashflow-change">▲ 18.3% vs LY</span>
+            <span class="kpi-label">Open Positions</span>
+            <span class="kpi-value" id="kpi-openpos">16</span>
+            <span class="kpi-change negative" id="kpi-openpos-change">▲ 4 vs LY</span>
           </div>
         </div>
       </div>
 
-      <!-- Charts Row 1 -->
+      <!-- Charts Row 1: Recruitment Pipeline & Turnover Trend -->
       <div class="charts-row">
         <div class="chart-card wide">
-          <h3>Monthly Profitability Trend</h3>
-          <canvas id="chart-profitability"></canvas>
+          <h3>Recruitment Pipeline</h3>
+          <canvas id="chart-pipeline"></canvas>
         </div>
         <div class="chart-card">
-          <h3>Expense Breakdown</h3>
-          <canvas id="chart-expense-breakdown"></canvas>
+          <h3>Monthly Turnover Rate</h3>
+          <canvas id="chart-turnover"></canvas>
         </div>
       </div>
 
-      <!-- Charts Row 2 -->
+      <!-- Charts Row 2: Satisfaction & Performance -->
       <div class="charts-row">
         <div class="chart-card">
-          <h3>Revenue vs Expenses</h3>
-          <canvas id="chart-rev-vs-exp"></canvas>
+          <h3>Employee Satisfaction by Department (Q4)</h3>
+          <canvas id="chart-satisfaction"></canvas>
         </div>
         <div class="chart-card">
-          <h3>Revenue Forecast (6-Month)</h3>
+          <h3>Performance Rating Distribution</h3>
+          <canvas id="chart-performance"></canvas>
+        </div>
+      </div>
+
+      <!-- Charts Row 3: Headcount & Engagement -->
+      <div class="charts-row">
+        <div class="chart-card">
+          <h3>Headcount Trend by Department</h3>
+          <canvas id="chart-headcount"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Employee Engagement Index</h3>
+          <canvas id="chart-engagement"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RECRUITMENT PAGE ===== -->
+    <section id="page-recruitment" class="page">
+      <!-- Charts Row 1: Pipeline & Funnel -->
+      <div class="charts-row">
+        <div class="chart-card wide">
+          <h3>Recruitment Funnel — Conversion Rates</h3>
+          <canvas id="chart-funnel"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Open Positions by Department</h3>
+          <canvas id="chart-open-positions"></canvas>
+        </div>
+      </div>
+
+      <!-- Charts Row 2: Cost & Time -->
+      <div class="charts-row">
+        <div class="chart-card">
+          <h3>Cost per Hire Trend</h3>
+          <canvas id="chart-cost"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Time to Hire Trend (Days)</h3>
+          <canvas id="chart-time"></canvas>
+        </div>
+      </div>
+
+      <!-- Recruitment Summary Table -->
+      <div class="table-card">
+        <h3>Recruitment Summary</h3>
+        <table id="table-recruitment">
+          <thead>
+            <tr><th>Metric</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th><th>Total / Avg</th></tr>
+          </thead>
+          <tbody id="recruitment-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== WORKFORCE PAGE ===== -->
+    <section id="page-workforce" class="page">
+      <!-- Charts Row 1: Diversity & Age -->
+      <div class="charts-row">
+        <div class="chart-card">
+          <h3>Workforce Diversity — Gender Split</h3>
+          <canvas id="chart-diversity"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Age Distribution</h3>
+          <canvas id="chart-age"></canvas>
+        </div>
+      </div>
+
+      <!-- Charts Row 2: Dept Turnover & Absenteeism -->
+      <div class="charts-row">
+        <div class="chart-card">
+          <h3>Annual Turnover by Department</h3>
+          <canvas id="chart-dept-turnover"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Monthly Absenteeism Rate</h3>
+          <canvas id="chart-absenteeism"></canvas>
+        </div>
+      </div>
+
+      <!-- Charts Row 3: Training Budget -->
+      <div class="charts-row">
+        <div class="chart-card wide">
+          <h3>Training &amp; Development Budget by Department</h3>
+          <canvas id="chart-training"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Department Headcount Composition</h3>
+          <canvas id="chart-dept-composition"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PERFORMANCE PAGE ===== -->
+    <section id="page-performance" class="page">
+      <div class="charts-row">
+        <div class="chart-card">
+          <h3>Performance Rating Distribution</h3>
+          <canvas id="chart-perf-dist"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Average Performance by Department</h3>
+          <canvas id="chart-perf-dept"></canvas>
+        </div>
+      </div>
+      <div class="charts-row">
+        <div class="chart-card">
+          <h3>Employee Satisfaction Trend (Quarterly)</h3>
+          <canvas id="chart-satisfaction-trend"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Employee Engagement Index</h3>
+          <canvas id="chart-engagement2"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PREDICTIVE ANALYTICS PAGE ===== -->
+    <section id="page-predictive" class="page">
+      <div class="charts-row">
+        <div class="chart-card wide">
+          <h3>Hiring Needs Forecast (6-Month)</h3>
           <canvas id="chart-forecast"></canvas>
         </div>
-      </div>
-    </section>
-
-    <!-- ===== INCOME STATEMENT PAGE ===== -->
-    <section id="page-income" class="page">
-      <div class="charts-row">
-        <div class="chart-card wide">
-          <h3>Income Statement — Monthly Breakdown</h3>
-          <canvas id="chart-income-waterfall"></canvas>
-        </div>
         <div class="chart-card">
-          <h3>Gross vs Operating vs Net Margin</h3>
-          <canvas id="chart-margins"></canvas>
-        </div>
-      </div>
-      <div class="table-card">
-        <h3>Income Statement Detail</h3>
-        <table id="table-income">
-          <thead>
-            <tr><th>Line Item</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th><th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th><th>Total</th></tr>
-          </thead>
-          <tbody id="income-tbody"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ===== BALANCE SHEET PAGE ===== -->
-    <section id="page-balance" class="page">
-      <div class="charts-row">
-        <div class="chart-card">
-          <h3>Assets vs Liabilities</h3>
-          <canvas id="chart-assets-liab"></canvas>
-        </div>
-        <div class="chart-card">
-          <h3>Asset Composition</h3>
-          <canvas id="chart-asset-comp"></canvas>
+          <h3>Headcount Projection</h3>
+          <canvas id="chart-headcount-proj"></canvas>
         </div>
       </div>
       <div class="charts-row">
         <div class="chart-card">
-          <h3>Debt-to-Equity Ratio</h3>
-          <canvas id="chart-dte"></canvas>
+          <h3>Turnover Rate Forecast</h3>
+          <canvas id="chart-turnover-forecast"></canvas>
         </div>
         <div class="chart-card">
-          <h3>Working Capital Trend</h3>
-          <canvas id="chart-working-cap"></canvas>
-        </div>
-      </div>
-      <div class="table-card">
-        <h3>Balance Sheet Summary</h3>
-        <table id="table-balance">
-          <thead>
-            <tr><th>Category</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
-          </thead>
-          <tbody id="balance-tbody"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ===== CASH FLOW PAGE ===== -->
-    <section id="page-cashflow" class="page">
-      <div class="charts-row">
-        <div class="chart-card wide">
-          <h3>Cash Flow Breakdown</h3>
-          <canvas id="chart-cf-breakdown"></canvas>
-        </div>
-        <div class="chart-card">
-          <h3>Cash Flow Components</h3>
-          <canvas id="chart-cf-components"></canvas>
-        </div>
-      </div>
-      <div class="charts-row">
-        <div class="chart-card">
-          <h3>Free Cash Flow Trend</h3>
-          <canvas id="chart-fcf"></canvas>
-        </div>
-        <div class="chart-card">
-          <h3>Cash Conversion Cycle</h3>
-          <canvas id="chart-ccc"></canvas>
+          <h3>Cost per Hire Projection</h3>
+          <canvas id="chart-cost-forecast"></canvas>
         </div>
       </div>
     </section>

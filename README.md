@@ -1,40 +1,64 @@
-# Financial Health Dashboard — SME Corp
+# Interactive HR Analytics Dashboard
 
-A Power BI-inspired interactive financial dashboard for SME companies, built with vanilla HTML, CSS, and JavaScript using Chart.js.
+A Power BI-style interactive dashboard for analyzing and optimizing HR processes and workforce management at SME Corp.
 
 ## Features
 
-- **KPI Cards** — Revenue, Expenses, Net Profit, Cash Flow with YoY change indicators
-- **Income Statement** — Monthly breakdown with waterfall charts, margin analysis, and detailed table
-- **Balance Sheet** — Assets vs Liabilities, asset composition, debt-to-equity ratio, working capital trends
-- **Cash Flow Analysis** — Operating/Investing/Financing breakdown, free cash flow trends, cash conversion cycle
-- **Revenue Forecasting** — 6-month linear extrapolation with visual forecast line
-- **Interactive Filters** — Filter by department (Sales, Marketing, Operations, HR, IT) and date range
-- **Dark Theme** — Modern Power BI-inspired dark UI with responsive design
+- **Overview** — KPI cards (Headcount, Turnover Rate, Satisfaction, Open Positions), recruitment pipeline, turnover trends, satisfaction radar, performance distribution, headcount trends, engagement index
+- **Recruitment Analytics** — Recruitment funnel with conversion rates, open positions by department, cost per hire trend, time to hire trend, detailed recruitment summary table
+- **Workforce Analytics** — Gender diversity breakdown, age distribution, department turnover comparison, absenteeism rate, training budget by department, department headcount composition
+- **Performance & Engagement** — Performance rating distribution, average performance by department, quarterly satisfaction trends, monthly engagement index
+- **Predictive Analytics** — 6-month hiring needs forecast, headcount projection, turnover rate forecast, cost per hire projection (all using linear regression)
 
 ## Tech Stack
 
-- HTML5 / CSS3 / Vanilla JavaScript
-- [Chart.js 4.x](https://www.chartjs.org/) for all visualizations
-- Google Fonts (Inter)
+- Vanilla HTML / CSS / JavaScript
+- [Chart.js 4.x](https://www.chartjs.org/) (loaded via CDN)
+- Dark Power BI-inspired theme
+- Fully responsive layout
 
-## Getting Started
+## Quick Start
 
-Simply open `index.html` in a browser, or serve with any static file server:
+No build step or dependencies to install. Just open `index.html` in a browser:
 
 ```bash
-npx serve .
+# Option 1: Open directly
+open index.html
+
+# Option 2: Serve with Python
+python3 -m http.server 8080
+# Then visit http://localhost:8080
+
+# Option 3: VS Code Live Server extension
+# Right-click index.html → "Open with Live Server"
 ```
 
-## Pages
+## Project Structure
 
-| Page | Description |
-|------|-------------|
-| Overview | KPI cards, profitability trends, expense breakdown, revenue vs expenses, forecasting |
-| Income Statement | Revenue/COGS/OpEx/Net Income bars, margin trends, detailed monthly table |
-| Balance Sheet | Assets vs liabilities, asset composition donut, D/E ratio, working capital |
-| Cash Flow | Stacked cash flow breakdown, components donut, FCF trend, cash conversion cycle |
+```
+├── index.html      # Page layout, sidebar navigation, KPI cards, chart canvases
+├── styles.css      # Dark Power BI theme, responsive grid, card styles
+├── data.js         # HR dataset (headcount, recruitment, turnover, satisfaction, etc.)
+├── dashboard.js    # Chart rendering, KPI updates, navigation, filters
+└── README.md       # This file
+```
 
-## License
+## Interactive Filters
 
-MIT
+- **Department** — Filter by Sales, Marketing, Operations, HR, or IT
+- **Date Range** — Select From/To month to filter time-series charts and table data
+- Click **Apply** to update all charts and KPIs
+
+## Data Coverage
+
+| Metric | Granularity | Range |
+|--------|-------------|-------|
+| Headcount | Monthly by department | Jan–Dec 2025 |
+| Recruitment Pipeline | Monthly (applications → hired) | Jan–Dec 2025 |
+| Turnover | Monthly (voluntary/involuntary) | Jan–Dec 2025 |
+| Satisfaction | Quarterly by department | Q1–Q4 2025 |
+| Performance | Annual distribution | FY 2025 |
+| Engagement | Monthly index (0-100) | Jan–Dec 2025 |
+| Cost per Hire | Monthly | Jan–Dec 2025 |
+| Time to Hire | Monthly (days) | Jan–Dec 2025 |
+| Forecasts | 6-month projection | Jan–Jun 2026 |
